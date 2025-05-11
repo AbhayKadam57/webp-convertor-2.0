@@ -197,6 +197,69 @@ function WebpConvertor() {
     a.click();
   };
 
+  // const handleSingleDownload = async (file) => {
+  //   console.log(file);
+  //   try {
+  //     const res = await fetch(file.url);
+
+  //     const content = await res.blob();
+
+  //     console.log("content", content);
+
+  //     const data = URL.createObjectURL(content);
+  //     console.log(data);
+
+  //     const name = file.endsWith(".webp")
+  //       ? file.name
+  //       : `${file.split(".")[0]}.webp`;
+
+  //     const a = document.createElement("a");
+  //     a.herf = data;
+  //     a.download = name;
+
+  //     a.click();
+  //     console.log("Hello");
+  //   } catch (e) {
+  //     toast("File download error", {
+  //       action: {
+  //         label: "OK",
+  //         onClick: () => console.log("Undo"),
+  //       },
+  //     });
+  //   }
+  // };
+
+  const handleSingleDownload = async (file) => {
+    console.log(file);
+    try {
+      const res = await fetch(file.url);
+      const content = await res.blob();
+      console.log("content", content);
+
+      const data = URL.createObjectURL(content);
+      console.log(data);
+
+      const name = file.name.endsWith(".webp")
+        ? file.name
+        : `${file.name.split(".")[0]}.webp`;
+
+      const a = document.createElement("a");
+      a.href = data;
+      a.download = name;
+      document.body.appendChild(a); // ensure it's part of the DOM
+      a.click();
+      document.body.removeChild(a); // clean up
+      console.log("Download triggered");
+    } catch (e) {
+      toast("File download error", {
+        action: {
+          label: "OK",
+          onClick: () => console.log("Undo"),
+        },
+      });
+    }
+  };
+
   return (
     <Card className="w-full max-w-2xl bg-gray-100 gap-0 shadow-cyan-950 shadow-2xl">
       <CardHeader className="bg-gray-100 border-b-1">
@@ -408,8 +471,11 @@ function WebpConvertor() {
                         <p>{file.name}</p>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <a
+                      <div
+                        className="flex items-center gap-2"
+                        onClick={() => handleSingleDownload(file)}
+                      >
+                        {/* <a
                           href={file.url}
                           target="_black"
                           rel="noopener noreferrer"
@@ -420,7 +486,11 @@ function WebpConvertor() {
                             size={16}
                             className="text-blue-500 cursor-pointer"
                           />
-                        </a>
+                        </a> */}
+                        <DownloadIcon
+                          size={16}
+                          className="text-blue-500 cursor-pointer"
+                        />
 
                         <XCircle
                           size={16}
