@@ -274,7 +274,7 @@ function WebpConvertor() {
       <CardContent className="bg-white py-4">
         <div className="p-1 bg-gray-100 rounded-b-sm flex justify-between">
           <div
-            className={`flex justify-center items-center  gap-2 py-1 flex-1 text-center min-h-[20px] transition-all cursor-pointer text-[14px] md:text-[16px] ${
+            className={`flex justify-center items-center px-2 md:px-0 gap-0 lg:gap-2 py-1 flex-1 text-center min-h-[20px] transition-all cursor-pointer text-[12px] lg:text-[16px] ${
               selectTab === 0 ? "bg-white text-black" : "text-gray-600"
             }`}
             onClick={() => handleTabsChange()}
@@ -283,7 +283,7 @@ function WebpConvertor() {
             Upload & Convert
           </div>
           <div
-            className={`flex justify-center items-center gap-2 py-1 flex-1 text-center min-h-[20px] text-[14px] md:text-[16px] transition-all cursor-pointer ${
+            className={`flex justify-center items-center px-2 md:px-0 gap-0 lg:gap-2 py-1 flex-1 text-center min-h-[20px] text-[12px] lg:text-[16px] transition-all cursor-pointer ${
               selectTab === 1 ? "bg-white text-black" : "  text-gray-600"
             }`}
             onClick={() => handleTabsChange()}
@@ -353,7 +353,9 @@ function WebpConvertor() {
             </div>
             <div className="py-4 flex flex-col md:flex-row gap-4">
               <div className="flex-1">
-                <Label className="text-[18px] font-bold">Width(Optional)</Label>
+                <Label className="text-[18px] font-bold">
+                  Width<small className="text-[12px]">(Optional)</small>
+                </Label>
                 <Input
                   min={0}
                   max={5000}
@@ -374,7 +376,7 @@ function WebpConvertor() {
               </div>
               <div className="flex-1">
                 <Label className="text-[18px] font-bold">
-                  Height(Optional)
+                  Height<small className="text-[12px]">(Optional)</small>
                 </Label>
                 <Input
                   min={0}
@@ -397,7 +399,8 @@ function WebpConvertor() {
             </div>
             <div className="py-4 flex flex-col">
               <Label className="text-[18px] font-bold">
-                Maintain aspect ratio(Optional)
+                Maintain aspect ratio
+                <small className="text-[12px]">(Optional)</small>
               </Label>
               <RadioGroup
                 defaultValue="No"
